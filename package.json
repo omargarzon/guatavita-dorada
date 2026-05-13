@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+    "start":"npx serve dist"
   },
   "dependencies": {
     "lucide-react": "^1.14.0",
