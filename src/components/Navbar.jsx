@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GOLD = '#c9a227';
 const WHITE = '#fff';
 const BLACK = '#000';
 
 const NAV_LINKS = [
-  { label: 'Guatavita Vieja', path: '/guatavita-vieja' },
-  { label: 'El Traslado',     path: '/el-traslado' },
-  { label: 'Atractivos',      path: '/atractivos' },
-  { label: 'Quienes Somos',   path: '/quienes-somos' },
-  { label: 'Entrevistas',     path: '/entrevistas' },
+  { key: 'guatavitaVieja', path: '/guatavita-vieja' },
+  { key: 'elTraslado',     path: '/el-traslado' },
+  { key: 'atractivos',     path: '/atractivos' },
+  { key: 'quienesSomos',   path: '/quienes-somos' },
+  { key: 'entrevistas',    path: '/entrevistas' },
 ];
 
 const SOCIAL = [
@@ -20,8 +21,28 @@ const SOCIAL = [
   { label: 'TikTok',    url: 'https://www.tiktok.com/@guatavita.dorada' },
 ];
 
+function LangToggle({ lang, toggleLang, style }) {
+  return (
+    <button onClick={toggleLang} aria-label="Toggle language"
+      style={{
+        display: 'flex', alignItems: 'center', gap: 6,
+        color: WHITE, fontSize: '0.82rem', fontWeight: 700,
+        letterSpacing: '0.04em', border: `1px solid #333`,
+        borderRadius: 20, padding: '0.35rem 0.75rem',
+        transition: 'color 0.2s, border-color 0.2s',
+        ...style,
+      }}
+      onMouseEnter={e => { e.currentTarget.style.color = GOLD; e.currentTarget.style.borderColor = GOLD; }}
+      onMouseLeave={e => { e.currentTarget.style.color = WHITE; e.currentTarget.style.borderColor = '#333'; }}>
+      <Globe size={16} />
+      {lang === 'es' ? 'ES' : 'EN'}
+    </button>
+  );
+}
+
 export default function Navbar() {
   const { pathname } = useLocation();
+  const { lang, toggleLang, t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   const linkStyle = (path) => ({
@@ -53,7 +74,7 @@ export default function Navbar() {
             <Link key={l.path} to={l.path} style={linkStyle(l.path)}
               onMouseEnter={e => e.target.style.color = GOLD}
               onMouseLeave={e => e.target.style.color = pathname === l.path ? GOLD : WHITE}>
-              {l.label}
+              {t.nav[l.key]}
             </Link>
           ))}
         </div>
@@ -85,6 +106,7 @@ export default function Navbar() {
               {s.label}
             </a>
           ))}
+          <LangToggle lang={lang} toggleLang={toggleLang} />
         </div>
 
         {/* Hamburger mobile */}
@@ -112,7 +134,7 @@ export default function Navbar() {
             <Link key={l.path} to={l.path}
               onClick={() => setOpen(false)}
               style={{ color: pathname === l.path ? GOLD : WHITE, fontSize: 16 }}>
-              {l.label}
+              {t.nav[l.key]}
             </Link>
           ))}
           <div style={{ borderTop: '1px solid #333', paddingTop: 12, display: 'flex', gap: 20 }}>
@@ -123,6 +145,7 @@ export default function Navbar() {
               </a>
             ))}
           </div>
+          <LangToggle lang={lang} toggleLang={toggleLang} style={{ alignSelf: 'flex-start' }} />
         </div>
       )}
 

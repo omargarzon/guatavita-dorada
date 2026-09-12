@@ -1,26 +1,28 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GOLD = '#c9a227';
 const BLACK = '#000';
 const WHITE = '#fff';
 
 const ATRACTIVOS = [
-  { src: '/imagenes/45.jpg',       alt: 'Puente Marroquín',                             label: 'Puente Marroquín' },
-  { src: '/imagenes/11.jpg',       alt: 'Arco de Armas',                                label: 'Arco de Armas' },
-  { src: '/imagenes/3.jpg',        alt: 'Monumento a la Cacica',                        label: 'Monumento a la Cacica' },
-  { src: '/imagenes/15.jpg',       alt: 'Plaza Cultural',                               label: 'Plaza Cultural' },
-  { src: '/imagenes/13.jpg',       alt: 'Iglesia Nuestra Señora de los Dolores',        label: 'Iglesia Nuestra Señora de los Dolores' },
-  { src: '/imagenes/obelisco.jpg', alt: 'Obelisco',                                     label: 'Obelisco' },
-  { src: '/imagenes/balsa.png',    alt: 'Balsa Muisca',                                 label: 'Balsa Muisca' },
-  { src: '/imagenes/mosaico.jpg',  alt: 'Mosaico Parque Natural Regional Vista Hermosa', label: 'Mosaico Parque Natural Regional Vista Hermosa' },
-  { src: '/imagenes/puente.jpg',   alt: 'Puente de los Enamorados',                     label: 'Puente de los Enamorados' },
-  { src: '/imagenes/pozo.jpg',     alt: 'Pozo de la Dicha',                             label: 'Pozo de la Dicha' },
-  { src: '/imagenes/centro.jpg',   alt: 'Centro de Memoria Histórica',                  label: 'Centro de Memoria Histórica' },
+  { src: '/imagenes/45.jpg',       alt: 'Puente Marroquín' },
+  { src: '/imagenes/11.jpg',       alt: 'Arco de Armas' },
+  { src: '/imagenes/3.jpg',        alt: 'Monumento a la Cacica' },
+  { src: '/imagenes/15.jpg',       alt: 'Plaza Cultural' },
+  { src: '/imagenes/13.jpg',       alt: 'Iglesia Nuestra Señora de los Dolores' },
+  { src: '/imagenes/obelisco.jpg', alt: 'Obelisco' },
+  { src: '/imagenes/balsa.png',    alt: 'Balsa Muisca' },
+  { src: '/imagenes/mosaico.jpg',  alt: 'Mosaico Parque Natural Regional Vista Hermosa' },
+  { src: '/imagenes/puente.jpg',   alt: 'Puente de los Enamorados' },
+  { src: '/imagenes/pozo.jpg',     alt: 'Pozo de la Dicha' },
+  { src: '/imagenes/centro.jpg',   alt: 'Centro de Memoria Histórica' },
 ];
 
 export default function Atractivos() {
+  const { t } = useLanguage();
   return (
     <div style={{ background: BLACK, color: WHITE, overflowX: 'hidden' }}>
       <Navbar />
@@ -40,7 +42,7 @@ export default function Atractivos() {
           fontSize: 'clamp(2.5rem, 6vw, 5rem)',
           fontWeight: 900, color: GOLD,
         }}>
-          Atractivos
+          {t.atractivosPage.title}
         </h1>
       </header>
 
@@ -65,7 +67,7 @@ export default function Atractivos() {
                 fontSize: '1.15rem', fontWeight: 400,
                 color: WHITE, letterSpacing: '0.02em',
               }}>
-                {a.label}
+                {t.atractivosPage.items[i]}
               </h2>
             </div>
           ))}

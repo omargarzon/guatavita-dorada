@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GOLD = '#c9a227';
 const WHITE = '#fff';
 const BLACK = '#000';
 
 const NAV_LINKS = [
-  { label: 'Entrevistas',     path: '/entrevistas' },
-  { label: 'Quienes Somos',   path: '/quienes-somos' },
-  { label: 'Atractivos',      path: '/atractivos' },
-  { label: 'El Traslado',     path: '/el-traslado' },
-  { label: 'Guatavita Vieja', path: '/guatavita-vieja' },
+  { key: 'entrevistas',    path: '/entrevistas' },
+  { key: 'quienesSomos',   path: '/quienes-somos' },
+  { key: 'atractivos',     path: '/atractivos' },
+  { key: 'elTraslado',     path: '/el-traslado' },
+  { key: 'guatavitaVieja', path: '/guatavita-vieja' },
 ];
 
 const SOCIAL = [
@@ -19,6 +20,7 @@ const SOCIAL = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <>
       <footer style={{
@@ -49,7 +51,7 @@ export default function Footer() {
                 style={{ color: WHITE, fontSize: '0.95rem', transition: 'color 0.2s' }}
                 onMouseEnter={e => e.target.style.color = GOLD}
                 onMouseLeave={e => e.target.style.color = WHITE}>
-                {l.label}
+                {t.nav[l.key]}
               </Link>
             ))}
           </nav>
@@ -74,7 +76,7 @@ export default function Footer() {
             ))}
           </div>
           <div style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '0.8rem', color: '#999', marginBottom: '0.5rem' }}>Patrocinador</p>
+            <p style={{ fontSize: '0.8rem', color: '#999', marginBottom: '0.5rem' }}>{t.footer.sponsor}</p>
             <img src="/imagenes/patrocinio.jpg" alt="Patrocinador"
               style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '2px solid #333' }} />
           </div>

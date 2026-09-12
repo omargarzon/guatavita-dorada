@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GOLD  = '#c9a227';
 const BLACK = '#000';
@@ -8,6 +9,7 @@ const WHITE = '#fff';
 const VIDEOS = ['/videos/entrevistas-1.mp4'];
 
 export default function Entrevistas() {
+  const { t } = useLanguage();
   return (
     <div style={{ background: BLACK, color: WHITE, overflowX: 'hidden' }}>
       <Navbar />
@@ -18,7 +20,7 @@ export default function Entrevistas() {
           fontSize: 'clamp(3rem, 8vw, 7rem)',
           fontWeight: 900, color: GOLD, lineHeight: 1,
         }}>
-          Entrevistas
+          {t.entrevistasPage.title}
         </h1>
       </header>
 

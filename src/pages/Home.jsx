@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GOLD  = '#c9a227';
 const BLACK = '#000';
@@ -60,6 +61,7 @@ function Btn({ children, to, href, variant = 'white', ...rest }) {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
   const [page, setPage] = useState(0);
   const maxPage = Math.ceil(CAROUSEL_IMAGES.length / PER_PAGE) - 1;
   const visible = CAROUSEL_IMAGES.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
@@ -89,10 +91,10 @@ export default function Home() {
             fontWeight: 900, lineHeight: 1.05,
             marginBottom: '1.5rem',
           }}>
-            Guatavita Dorada
+            {t.home.heroTitle}
           </h1>
           <p style={{ fontSize: '1.1rem', fontWeight: 700, lineHeight: 1.5, maxWidth: 380 }}>
-            Guatavita leyenda, naturaleza y alma viva en cada viaje
+            {t.home.heroSubtitle}
           </p>
         </div>
 
@@ -128,9 +130,9 @@ export default function Home() {
             fontSize: 'clamp(2rem, 3.5vw, 3rem)',
             fontWeight: 700, lineHeight: 1.2,
           }}>
-            Guatavita La Vieja
+            {t.home.viejaTitle}
           </h2>
-          <Btn to="/guatavita-vieja" variant="white">Leer más</Btn>
+          <Btn to="/guatavita-vieja" variant="white">{t.home.readMore}</Btn>
         </div>
         <div style={{ overflow: 'hidden' }}>
           <img src="/imagenes/La_Antigua.jpg" alt="Guatavita La Vieja"
@@ -166,12 +168,12 @@ export default function Home() {
             fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
             fontWeight: 700, marginBottom: '1.5rem',
           }}>
-            El Traslado
+            {t.home.trasladoTitle}
           </h2>
           <p style={{ fontSize: '1rem', lineHeight: 1.6, color: '#444', maxWidth: 360, marginBottom: '2.5rem' }}>
-            Conoce la historia de cómo fue el traslado de Guatavita la Vieja a La Nueva
+            {t.home.trasladoText}
           </p>
-          <Btn to="/el-traslado" variant="gold-outline">Leer Más</Btn>
+          <Btn to="/el-traslado" variant="gold-outline">{t.home.readMore}</Btn>
         </div>
       </section>
 
@@ -182,10 +184,10 @@ export default function Home() {
           fontSize: 'clamp(2.2rem, 5vw, 4rem)',
           fontWeight: 900, marginBottom: '0.75rem',
         }}>
-          Atractivos Turísticos
+          {t.home.atractivosTitle}
         </h2>
         <p style={{ color: '#bbb', fontSize: '1rem', marginBottom: '3rem' }}>
-          Conoce la historia de los hermosos atractivos de Guatavita La nueva
+          {t.home.atractivosSubtitle}
         </p>
 
         <div style={{ position: 'relative', maxWidth: 960, margin: '0 auto 3rem' }}>
@@ -231,7 +233,7 @@ export default function Home() {
           </button>
         </div>
 
-        <Btn to="/atractivos" variant="gold">Leer Más</Btn>
+        <Btn to="/atractivos" variant="gold">{t.home.readMore}</Btn>
       </section>
 
       <Footer />
