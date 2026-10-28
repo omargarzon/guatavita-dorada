@@ -29,7 +29,7 @@ export default function App() {
       <main id="contenido">
         <Seccion id="tierra-muisca" numero="02" titulo={c.tierra.titulo}>
           <Parrafos textos={c.tierra.parrafos} />
-          <Foto id="img-07" className="my-10" />
+          <Foto id="img-06" className="my-10" />
           <Recuadro tipo="dato" datos={c.tierra.datoCurioso} />
         </Seccion>
 

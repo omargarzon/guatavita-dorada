@@ -7,17 +7,17 @@ import { FranjaRombos } from "./Motivos";
 
 export function Hero() {
   const { c, lang } = useIdioma();
-  const cr = creditos["img-10"];
+  const cr = creditos["img-07"];
   return (
     <section id="inicio" className="relative flex min-h-[100svh] items-end overflow-hidden bg-andino-oscuro text-cal">
       {/* La foto se muestra completa, sin filtros; el degradado va en una capa aparte para que el texto se lea */}
       <img
-        src="/img/img-10-sm.webp"
-        srcSet={srcSet("img-10")}
+        src="/img/img-07-sm.webp"
+        srcSet={srcSet("img-07")}
         sizes="100vw"
         width={cr.ancho}
         height={cr.alto}
-        alt={imagenes["img-10"].alt[lang]}
+        alt={imagenes["img-07"].alt[lang]}
         fetchPriority="high"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
@@ -36,7 +36,7 @@ export function Hero() {
           <ChevronDown aria-hidden="true" className="h-5 w-5 motion-safe:animate-bounce" />
         </a>
         <p className="mt-10 text-xs text-cal/70">
-          <Credito id="img-10" />
+          <Credito id="img-07" />
         </p>
       </div>
     </section>
