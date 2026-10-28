@@ -1,26 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+@import "tailwindcss";
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@theme {
+  /* Oro muisca, verde andino, azul de laguna y blanco de las casas */
+  --color-oro: #c9a227;
+  --color-oro-claro: #e6c766;
+  --color-ambar: #d98e04;
+  --color-ambar-oscuro: #8a5a00;
+  --color-andino: #2f6b45;
+  --color-andino-oscuro: #14231c;
+  --color-laguna: #1f5f7a;
+  --color-laguna-claro: #2b6f8a;
+  --color-cal: #faf7f0;
+  --color-arena: #f1e9d8;
+  --color-tinta: #1d1b17;
+  --color-tinta-suave: #4a453c;
+  --color-cacica: #a4362b;
+  --color-terracota: #b5653a;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3 Variable", "Segoe UI", system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-html, body, #root {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+  /* La navegación fija no debe tapar el título al saltar a una sección */
+  scroll-padding-top: 4.5rem;
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  background: var(--color-cal);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
-a { text-decoration: none; }
-button { cursor: pointer; border: none; background: none; }
-img { display: block; max-width: 100%; }
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Cormorant usa cifras antiguas por defecto; las de altura uniforme se leen mejor en fechas y datos */
+.font-serif,
+h1,
+h2,
+h3,
+h4 {
+  font-variant-numeric: lining-nums;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ambar);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Aparición suave al hacer scroll. Solo se oculta si JavaScript está activo. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+dialog::backdrop {
+  background: rgb(10 16 13 / 0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
