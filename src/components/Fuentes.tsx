@@ -9,7 +9,7 @@ export function Fuentes() {
   const f = c.fuentes;
   const enlace = "underline decoration-oro/60 underline-offset-2 hover:decoration-oro";
   return (
-    <div className="space-y-12 text-[0.95rem] text-cal/90">
+    <div className="grid gap-12 text-[0.95rem] text-cal/90 lg:grid-cols-2 lg:gap-x-16">
       <div className="reveal">
         <h3 className="text-2xl font-bold text-oro-claro">{f.fuentesTitulo}</h3>
         <ul className="mt-4 space-y-2.5">
@@ -28,10 +28,10 @@ export function Fuentes() {
         </ul>
       </div>
 
-      <div className="reveal">
+      <div className="reveal lg:order-last lg:col-span-2">
         <h3 className="text-2xl font-bold text-oro-claro">{f.creditosTitulo}</h3>
         <p className="mt-2 text-cal/75">{f.creditosIntro}</p>
-        <ul className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+        <ul className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
           {(Object.keys(creditos) as ImagenId[]).map((id) => {
             const cr = creditos[id];
             return (

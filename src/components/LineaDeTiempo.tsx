@@ -54,14 +54,14 @@ export function LineaDeTiempo() {
         })}
       </div>
 
-      <ol className="relative mt-10 border-l-2 border-tinta/15 pl-6 sm:pl-8" aria-live="polite">
+      <ol className="mt-10 lg:columns-2 lg:gap-16" aria-live="polite">
         {hitos.map((h) => {
           const cat = categorias[h.categoria];
           return (
-            <li key={h.fecha.es + h.texto.es} className="relative pb-7 last:pb-0">
+            <li key={h.fecha.es + h.texto.es} className="relative break-inside-avoid border-l-2 border-tinta/15 pb-7 pl-6 sm:pl-8">
               <span
                 aria-hidden="true"
-                className="absolute -left-[calc(1.5rem+7px)] top-1.5 h-3 w-3 rotate-45 ring-4 ring-cal sm:-left-[calc(2rem+7px)]"
+                className="absolute -left-[7px] top-1.5 h-3 w-3 rotate-45 ring-4 ring-cal"
                 style={{ background: cat.color }}
               />
               <p className="text-sm font-bold uppercase tracking-wide" style={{ color: cat.texto }}>

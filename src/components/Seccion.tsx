@@ -20,14 +20,20 @@ interface SeccionProps {
   fondo?: Fondo;
   etiqueta?: ReactNode;
   children: ReactNode;
+  // Fotos que en escritorio van en una columna a la derecha del texto (en móvil, debajo)
+  lateral?: ReactNode;
+  // Si la columna lateral tiene una sola foto, se queda fija mientras se lee el texto
+  lateralFijo?: boolean;
+  // Bloques que ocupan todo el ancho, debajo del texto y la columna lateral
+  abajo?: ReactNode;
 }
 
-export function Seccion({ id, numero, titulo, fondo = "cal", etiqueta, children }: SeccionProps) {
+export function Seccion({ id, numero, titulo, fondo = "cal", etiqueta, children, lateral, lateralFijo, abajo }: SeccionProps) {
   const { c } = useIdioma();
   const oscuro = fondo === "oscuro";
   return (
-    <section id={id} aria-labelledby={`${id}-titulo`} className={`relative px-4 py-16 sm:px-6 sm:py-24 ${fondos[fondo]}`}>
-      <div className="mx-auto max-w-3xl">
+    <section id={id} aria-labelledby={`${id}-titulo`} className={`relative px-4 py-16 sm:px-6 sm:py-24 lg:px-10 ${fondos[fondo]}`}>
+      <div className="mx-auto max-w-6xl">
         <header className="reveal mb-10">
           <div className="flex items-center gap-3">
             <Espiral className={`h-6 w-6 ${oscuro ? "text-oro" : "text-ambar"}`} />
@@ -41,7 +47,15 @@ export function Seccion({ id, numero, titulo, fondo = "cal", etiqueta, children 
           </h2>
           <FranjaRombos className={`mt-6 w-40 ${oscuro ? "text-oro/70" : "text-oro"}`} />
         </header>
-        {children}
+        {lateral ? (
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_27rem] xl:gap-16">
+            <div className="min-w-0">{children}</div>
+            <div className={`mt-10 space-y-8 lg:mt-1 ${lateralFijo ? "lg:sticky lg:top-24 lg:self-start" : ""}`}>{lateral}</div>
+          </div>
+        ) : (
+          children
+        )}
+        {abajo && <div className="mt-12">{abajo}</div>}
       </div>
     </section>
   );
@@ -49,7 +63,7 @@ export function Seccion({ id, numero, titulo, fondo = "cal", etiqueta, children 
 
 export function Parrafos({ textos, oscuro }: { textos: string[]; oscuro?: boolean }) {
   return (
-    <div className={`space-y-5 ${oscuro ? "text-cal/90" : "text-tinta"}`}>
+    <div className={`max-w-3xl space-y-5 ${oscuro ? "text-cal/90" : "text-tinta"}`}>
       {textos.map((t, i) => (
         <p key={i} className="reveal">
           <Texto>{t}</Texto>

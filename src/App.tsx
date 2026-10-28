@@ -15,7 +15,9 @@ import { Galeria } from "./components/Galeria";
 import { Fuentes } from "./components/Fuentes";
 import { FranjaRombos, Zigzag } from "./components/Motivos";
 
-const MEDIA = "(min-width: 640px) 50vw, 100vw";
+const MEDIA = "(min-width: 1152px) 560px, (min-width: 640px) 50vw, 100vw";
+const LATERAL = "(min-width: 1280px) 432px, (min-width: 1024px) 352px, 100vw";
+const CUARTO = "(min-width: 1024px) 270px, (min-width: 640px) 50vw, 100vw";
 
 export default function App() {
   const { c } = useIdioma();
@@ -27,26 +29,38 @@ export default function App() {
       <Hero />
 
       <main id="contenido">
-        <Seccion id="tierra-muisca" numero="02" titulo={c.tierra.titulo}>
+        <Seccion
+          id="tierra-muisca"
+          numero="02"
+          titulo={c.tierra.titulo}
+          lateralFijo
+          lateral={<Foto id="img-06" sizes={LATERAL} />}
+        >
           <Parrafos textos={c.tierra.parrafos} />
-          <Foto id="img-06" className="my-10" />
           <Recuadro tipo="dato" datos={c.tierra.datoCurioso} />
         </Seccion>
 
-        <Seccion id="el-dorado" numero="03" titulo={c.dorado.titulo} fondo="arena">
+        <Seccion
+          id="el-dorado"
+          numero="03"
+          titulo={c.dorado.titulo}
+          fondo="arena"
+          lateral={
+            <>
+              <Foto id="img-01" sizes={LATERAL} />
+              <Foto id="img-02" sizes={LATERAL} />
+              <Foto id="img-04" sizes={LATERAL} />
+            </>
+          }
+        >
           <Parrafos textos={c.dorado.antesDeCita} />
-          <blockquote className="reveal my-8 border-l-4 border-oro pl-5 sm:pl-7">
+          <blockquote className="reveal my-8 max-w-3xl border-l-4 border-oro pl-5 sm:pl-7">
             <p className="font-serif text-2xl italic leading-snug text-andino-oscuro sm:text-3xl">“{c.dorado.cita.texto}”</p>
             <footer className="mt-3 text-sm font-semibold text-tinta-suave">— {c.dorado.cita.fuente}</footer>
           </blockquote>
           <Parrafos textos={c.dorado.despuesDeCita} />
-          <Foto id="img-01" className="my-10" />
           <Recuadro tipo="nota" datos={c.dorado.mito} />
           <Recuadro tipo="sabias" datos={c.dorado.sabias} />
-          <div className="my-10 grid gap-6 sm:grid-cols-2">
-            <Foto id="img-02" sizes={MEDIA} />
-            <Foto id="img-04" sizes={MEDIA} />
-          </div>
           <Recuadro tipo="dato" datos={c.dorado.balsaPerdida} />
         </Seccion>
 
@@ -58,8 +72,20 @@ export default function App() {
           etiqueta={
             <span className="rounded-sm bg-cacica px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.2em] text-white">{c.ui.mito}</span>
           }
+          lateral={
+            <>
+              <Foto id="img-09" sizes={LATERAL} oscuro />
+              <Pendiente titulo={c.pendientes.cacica} tipo="ilustracion" />
+            </>
+          }
+          abajo={
+            <div className="grid gap-x-12 rounded-sm bg-cal px-5 py-2 text-tinta sm:px-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:py-6">
+              <MitoRealidad />
+              <Recuadro tipo="mito" datos={c.cacica.otraLectura} />
+            </div>
+          }
         >
-          <div className="space-y-5 font-serif text-xl leading-relaxed text-cal/90 sm:text-[1.35rem]">
+          <div className="max-w-3xl space-y-5 font-serif text-xl leading-relaxed text-cal/90 sm:text-[1.35rem]">
             {c.cacica.relato.map((p, i) => (
               <p
                 key={i}
@@ -69,66 +95,93 @@ export default function App() {
               </p>
             ))}
           </div>
-          <div className="my-10 grid gap-6 sm:grid-cols-2">
-            <Foto id="img-09" sizes={MEDIA} oscuro />
-            <Pendiente titulo={c.pendientes.cacica} tipo="ilustracion" />
-          </div>
-          <div className="rounded-sm bg-cal px-5 py-2 text-tinta sm:px-8">
-            <MitoRealidad />
-            <Recuadro tipo="mito" datos={c.cacica.otraLectura} />
-          </div>
         </Seccion>
 
-        <Seccion id="conquista" numero="05" titulo={c.conquista.titulo} fondo="arena">
+        <Seccion
+          id="conquista"
+          numero="05"
+          titulo={c.conquista.titulo}
+          fondo="arena"
+          lateralFijo
+          lateral={<Foto id="img-12" sizes={LATERAL} />}
+        >
           <Parrafos textos={c.conquista.parrafos} />
-          <Foto id="img-12" className="mt-10" />
         </Seccion>
 
-        <Seccion id="fiebre-del-oro" numero="06" titulo={c.fiebre.titulo}>
-          <p className="reveal text-xl leading-relaxed">{c.fiebre.intro}</p>
+        <Seccion
+          id="fiebre-del-oro"
+          numero="06"
+          titulo={c.fiebre.titulo}
+          lateral={
+            <>
+              <Foto id="img-17" sizes={LATERAL} />
+              <Pendiente titulo={c.pendientes.seca1910} />
+              <Foto id="img-08" sizes={LATERAL} />
+            </>
+          }
+        >
+          <p className="reveal max-w-3xl text-xl leading-relaxed">{c.fiebre.intro}</p>
           <FiebreDelOro />
           <Recuadro tipo="numeros" datos={c.fiebre.enNumeros} />
-          <div className="my-10 grid gap-6 sm:grid-cols-2">
-            <Foto id="img-17" sizes={MEDIA} />
-            <Pendiente titulo={c.pendientes.seca1910} />
-          </div>
           <Recuadro tipo="hoy" datos={c.fiebre.hoy} />
-          <Foto id="img-08" className="mt-10" />
         </Seccion>
 
-        <Seccion id="embalse" numero="07" titulo={c.embalse.titulo} fondo="arena">
+        <Seccion
+          id="embalse"
+          numero="07"
+          titulo={c.embalse.titulo}
+          fondo="arena"
+          lateralFijo
+          lateral={<Foto id="img-10b" sizes={LATERAL} />}
+          abajo={
+            <>
+              <Cifras titulo={c.embalse.cifrasTitulo} cifras={c.embalse.cifras} />
+              <div className="my-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <Pendiente titulo={c.pendientes.agua1963} />
+                <Pendiente titulo={c.pendientes.pueblo1967} />
+                <Pendiente titulo={c.pendientes.presa} />
+              </div>
+              <Testimonios />
+            </>
+          }
+        >
           <Parrafos textos={c.embalse.parrafos} />
-          <Cifras titulo={c.embalse.cifrasTitulo} cifras={c.embalse.cifras} />
-          <div className="my-10 grid gap-6 sm:grid-cols-2">
-            <Pendiente titulo={c.pendientes.agua1963} />
-            <Pendiente titulo={c.pendientes.pueblo1967} />
-            <Pendiente titulo={c.pendientes.presa} />
-            <Foto id="img-10b" sizes={MEDIA} />
-          </div>
-          <Testimonios />
         </Seccion>
 
-        <Seccion id="guatavita-la-nueva" numero="08" titulo={c.nueva.titulo}>
+        <Seccion
+          id="guatavita-la-nueva"
+          numero="08"
+          titulo={c.nueva.titulo}
+          abajo={
+            <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <Foto id="img-13a" sizes={CUARTO} />
+              <Foto id="img-14" sizes={CUARTO} />
+              <Foto id="img-13b" sizes={CUARTO} />
+              <Foto id="img-13c" sizes={CUARTO} className="mx-auto max-w-[17rem] sm:max-w-none" />
+            </div>
+          }
+        >
           <Parrafos textos={c.nueva.parrafos} />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <Foto id="img-13a" sizes={MEDIA} />
-            <Foto id="img-14" sizes={MEDIA} />
-            <Foto id="img-13b" sizes={MEDIA} />
-            <Foto id="img-13c" sizes={MEDIA} className="mx-auto max-w-[17rem] sm:row-span-2 sm:max-w-none" />
-          </div>
         </Seccion>
 
-        <Seccion id="cuando-el-agua-baja" numero="09" titulo={c.aguaBaja.titulo} fondo="oscuro">
+        <Seccion
+          id="cuando-el-agua-baja"
+          numero="09"
+          titulo={c.aguaBaja.titulo}
+          fondo="oscuro"
+          abajo={
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Foto id="img-15" sizes={MEDIA} oscuro />
+              <Foto id="img-16" sizes={MEDIA} oscuro />
+            </div>
+          }
+        >
           <Parrafos textos={c.aguaBaja.parrafos} oscuro />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <Foto id="img-15" sizes={MEDIA} oscuro />
-            <Foto id="img-16" sizes={MEDIA} oscuro />
-          </div>
         </Seccion>
 
         <Seccion id="visita" numero="10" titulo={c.hoy.titulo} fondo="arena">
           <h3 className="reveal text-3xl font-bold text-andino-oscuro">{c.hoy.datosTitulo}</h3>
-          <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+          <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {c.hoy.datos.map((d) => (
               <div key={d.etiqueta} className="reveal rounded-sm border-t-4 border-oro bg-white px-4 py-3 shadow-sm">
                 <dt className="text-xs font-bold uppercase tracking-wide text-ambar-oscuro">{d.etiqueta}</dt>
@@ -172,7 +225,7 @@ export default function App() {
         </Seccion>
 
         <Seccion id="linea-de-tiempo" numero="11" titulo={c.lineaTiempo.titulo}>
-          <p className="reveal mb-8 text-lg">{c.lineaTiempo.intro}</p>
+          <p className="reveal mb-8 max-w-3xl text-lg">{c.lineaTiempo.intro}</p>
           <LineaDeTiempo />
         </Seccion>
 
