@@ -84,7 +84,7 @@ export function Navegacion() {
       </a>
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="#inicio" className="font-serif text-xl font-bold tracking-wide text-oro-claro">
-          Guatavita Dorada
+          Vive Guatavita
         </a>
 
         <nav aria-label={c.ui.secciones} className="hidden xl:block">

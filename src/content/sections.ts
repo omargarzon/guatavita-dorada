@@ -412,7 +412,7 @@ const es: Contenido = {
     ],
   },
   pie: {
-    texto: "Guatavita Dorada · Historia de Guatavita, Cundinamarca, Colombia",
+    texto: "Vive Guatavita · Historia de Guatavita, Cundinamarca, Colombia",
   },
 };
 
@@ -709,7 +709,7 @@ const en: Contenido = {
     ],
   },
   pie: {
-    texto: "Guatavita Dorada · History of Guatavita, Cundinamarca, Colombia",
+    texto: "Vive Guatavita · History of Guatavita, Cundinamarca, Colombia",
   },
 };
 
